@@ -1,0 +1,23 @@
+.row
+  .col-md-8.well
+    #new_note
+      %h2 New Note
+      %ul
+        = render 'form'
+
+  .col-md-6.well
+    #details
+      %ul
+      %table
+        %tbody
+          %tr
+          - @note.each do |note|
+            %tr
+              %td= link_to note.title, note 
+              %td= note.title
+              %td= note.description 
+              %td= link_to "Back", root_path, class: "btn btn-default"
+              %td= link_to "Edit", edit_note_path(note), remote: true, class: "btn btn-default"
+              %td= link_to "Delete", note_path(note), method: :delete, data: {confirm: "Are you sure?" }, class: "btn btn-default", remote: true
+  .col-md-6.well
+    #editdetails
